@@ -1,4 +1,32 @@
+
+
+img {
+height: 256px;
+  padding: 5px;
+  width: 256px;
+}
+
+span {
+  display: block;
+} 
+
+
+
 .inline {
     display: inline-block
 }
 
+
+.container {
+  width: 100%;
+  height: auto;
+  min-height: 500px;
+  max-width: 500px;
+  min-width: 250px;
+  background: #f1f5f8;
+  background-size: 25px 25px;
+  border-radius: 20px;
+  box-shadow: 4px 3px 7px 2px #00000040;
+  padding: 1rem;
+  box-sizing: border-box;
+}

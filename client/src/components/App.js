@@ -24,11 +24,12 @@ function App() {
 
   return (
     <Fragment>
-      <GenerateImage />              
-       <ImageList /> 
-
+      <div className="container">
+        <GenerateImage />
+        <ImageList />
+      </div>
     </Fragment>
-  )
+  );
 }
 
 export default App
