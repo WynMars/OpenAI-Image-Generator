@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment} from 'react'
 import GenerateImage from './GenerateImage'
 import ImageList from './ImageList'
-import axios from 'axios';
+// import axios from 'axios';
 
 import './App.css';
 

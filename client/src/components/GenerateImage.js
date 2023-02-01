@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import anywhereDoor from "../image/anywhereDoor.png";
-// const auth_api = process.env.REACT_APP_AUTHORIZATION
-// require("dotenv").config();
-// const Authorization_key = config.get("Authorization_key");
+
 
 export default function GenerateImage() {
   const sampleImg = anywhereDoor;
@@ -19,7 +17,8 @@ export default function GenerateImage() {
     baseURL: "/api",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer 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",
+      "Authorization":
+        "Bearer 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",
     },
   });
 
