@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import anywhereDoor from "../image/anywhereDoor.png";
+
+// require("dotenv").config();
+
+// const config = require("../../../config");
+// const REACT_APP_AUTHORIZATION = config.get("REACT_APP_AUTHORIZATION");
+
+
 // import loader from "../image/spinner-solid.svg";
 // import PulseLoader from "react-spinners/PulseLoader";
 
@@ -19,12 +26,13 @@ export default function GenerateImage() {
     setTextInput(e.target.value);
   };
 
+// console.log(process.env);
+
   const api = axios.create({
     baseURL: "/api",
     headers: {
       "Content-Type": "application/json",
-      Authorization:
-        "Bearer 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",
+      Authorization: "Bearer " + process.env.REACT_APP_OPENAI_API_KEY,
     },
   });
 
