@@ -59,13 +59,18 @@ export default function GenerateImage() {
     <div>
       <form>
         <textarea
+          className="form-control"
           onChange={changeHandler}
           value={textInput}
           cols="50"
           rows="5"
         ></textarea>
-        <button onClick={generateHandler}>Generate Image</button>
-        <img src={image} alt="openAIImage" />
+        <button className="btn btn-dark" onClick={generateHandler}>
+          Generate Image
+        </button>
+        <div>
+          <img src={image} alt="openAIImage" />
+        </div>
       </form>
     </div>
   );
