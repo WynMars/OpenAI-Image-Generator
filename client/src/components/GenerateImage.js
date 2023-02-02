@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 import anywhereDoor from "../image/anywhereDoor.png";
+// import loader from "../image/spinner-solid.svg";
+// import PulseLoader from "react-spinners/PulseLoader";
+
+{/* <PulseLoader color="#36d7b7" />; */}
 
 
 export default function GenerateImage() {
   const sampleImg = anywhereDoor;
+  const loadingImg = "Generating...";
 
   const [image, setImage] = useState(sampleImg);
   const [textInput, setTextInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const changeHandler = (e) => {
     setTextInput(e.target.value);
@@ -17,7 +23,7 @@ export default function GenerateImage() {
     baseURL: "/api",
     headers: {
       "Content-Type": "application/json",
-      "Authorization":
+      Authorization:
         "Bearer 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",
     },
   });
@@ -25,6 +31,7 @@ export default function GenerateImage() {
   const generateHandler = async (e) => {
     e.preventDefault();
     setTextInput("");
+    setLoading(true);
 
     const postData = {
       prompt: textInput,
@@ -34,6 +41,7 @@ export default function GenerateImage() {
     const url = response.data;
     console.log(url);
     setImage(url);
+    setLoading(false);
 
     // api
     //   .post("/openai", postData)
@@ -58,7 +66,7 @@ export default function GenerateImage() {
   return (
     <div>
       <form>
-        <textarea
+        <textarea placeholder="Please type your image description..."
           className="form-control"
           onChange={changeHandler}
           value={textInput}
@@ -69,7 +77,7 @@ export default function GenerateImage() {
           Generate Image
         </button>
         <div>
-          <img src={image} alt="openAIImage" />
+          {loading ? <h1>{loadingImg}</h1> : <img src={image} alt="openAIImage" />}
         </div>
       </form>
     </div>
