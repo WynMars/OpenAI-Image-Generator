@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import anywhereDoor from "../image/anywhereDoor.png";
 
+//React don't need to install dotenv, since it already included
 // require("dotenv").config();
 
+//config out of the folder
 // const config = require("../../../config");
 // const REACT_APP_AUTHORIZATION = config.get("REACT_APP_AUTHORIZATION");
 
-
-// import loader from "../image/spinner-solid.svg";
-// import PulseLoader from "react-spinners/PulseLoader";
+//loadier
+import ClipLoader from "react-spinners/ClipLoader";
 
 {/* <PulseLoader color="#36d7b7" />; */}
 
@@ -74,7 +75,8 @@ export default function GenerateImage() {
   return (
     <div>
       <form>
-        <textarea placeholder="Please type your image description..."
+        <textarea
+          placeholder="Please type your image description..."
           className="form-control"
           onChange={changeHandler}
           value={textInput}
@@ -85,7 +87,18 @@ export default function GenerateImage() {
           Generate Image
         </button>
         <div>
-          {loading ? <h1>{loadingImg}</h1> : <img src={image} alt="openAIImage" />}
+          {loading ? (
+            <ClipLoader
+              className="loader"
+              color={"#6c6d6d"}
+              loading={loading}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          ) : (
+            <img src={image} alt="openAIImage" />
+          )}
         </div>
       </form>
     </div>
