@@ -10,13 +10,24 @@ img {
 }
 
 button {
-  margin-top: 0px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
-p{
-  color:#5a4022
+span{
+  color:red;
+  display: none;
 }
+
+/* textarea:invalid[focused="true"]{
+    border: 1px solid rgb(0, 0, 0);
+}
+ */
+
+textarea:invalid[focused="true"] ~ span{
+    display: block;
+}
+
 
 .container {
   width: 100%;
