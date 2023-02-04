@@ -10,8 +10,12 @@ img {
 }
 
 button {
-  margin-top: 10px;
+  margin-top: 0px;
   margin-bottom: 20px;
+}
+
+p{
+  color:#5a4022
 }
 
 .container {

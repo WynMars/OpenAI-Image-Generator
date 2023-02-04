@@ -17,11 +17,11 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 export default function GenerateImage() {
   const sampleImg = anywhereDoor;
-  const loadingImg = "Generating...";
 
   const [image, setImage] = useState(sampleImg);
   const [textInput, setTextInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const changeHandler = (e) => {
     setTextInput(e.target.value);
@@ -29,29 +29,34 @@ export default function GenerateImage() {
 
 // console.log(process.env);
 
-  const api = axios.create({
-    baseURL: "/api",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + process.env.REACT_APP_OPENAI_API_KEY,
-    },
-  });
+//Create Axios 
+  // const api = axios.create({
+  //   baseURL: "/api",
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   },
+  // });
 
   const generateHandler = async (e) => {
     e.preventDefault();
-    setTextInput("");
-    setLoading(true);
 
-    const postData = {
-      prompt: textInput,
-    };
+ if (!textInput) {
+   setErrorMessage("Input field cannot be empty");
+ } else {
+   setErrorMessage("");
 
-    const response = await api.post("/openai", postData);
-    const url = response.data;
-    console.log(url);
-    setImage(url);
-    setLoading(false);
+   setLoading(true);
 
+   const postData = {
+     prompt: textInput,
+   };
+
+   const response = await axios.post("/api/openai", postData);
+   const url = response.data;
+   console.log(url);
+   setImage(url);
+   setLoading(false);
+ }
     // api
     //   .post("/openai", postData)
     //   .then((response) => {
@@ -74,7 +79,7 @@ export default function GenerateImage() {
 
   return (
     <div>
-      <form>
+      <form onSubmit={generateHandler}>
         <textarea
           placeholder="Please type your image description..."
           className="form-control"
@@ -83,9 +88,8 @@ export default function GenerateImage() {
           cols="50"
           rows="5"
         ></textarea>
-        <button className="btn btn-dark" onClick={generateHandler}>
-          Generate Image
-        </button>
+        <p>{errorMessage}</p>
+        <button className="btn btn-dark">Generate Image</button>
         <div>
           {loading ? (
             <ClipLoader
