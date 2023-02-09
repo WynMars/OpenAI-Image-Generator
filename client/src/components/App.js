@@ -9,9 +9,9 @@ function App() {
   
   return (
     <Fragment>
-    {/* <div className="container">
+    <div className="container">
         <GenerateImage />
-     </div> */}
+     </div>
       <div className="container">
         <Chatbot />
       </div>

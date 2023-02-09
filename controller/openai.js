@@ -11,11 +11,12 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 exports.image = async (req, res) => {
-  console.log("OpenAI Page Post");
+  console.log("OpenAI Image Post");
+  const { textInput } = req.body;
 
   try {
     const response = await openai.createImage({
-      prompt: req.body.prompt,
+      prompt: textInput,
       n: 1,
       size: "256x256",
     });
@@ -40,12 +41,19 @@ exports.image = async (req, res) => {
 
 //chatbot
 exports.chatbot = async (req, res) => {
-  const text = req.body.prompt;
+  console.log("OpenAI Chatbot Post");
+
+  const { textInput } = req.body;
 
   try {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: text,
+      prompt: `
+            What is your name?
+            My name is Chatbot.
+            How old are you?
+            I am 900 years old.
+            ${textInput}`,
     });
     if (response.data) {
       if (response.data.choices[0].text) {

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import anywhereDoor from "../image/anywhereDoor.png";
 
 //loadier
 // import ClipLoader from "react-spinners/ClipLoader";
@@ -14,7 +13,7 @@ export default function Chatbot() {
   const [focused, setFocused] = useState(false);
 
   const inputs = {
-    placeholder: "Please type your image description...",
+    placeholder: "Ask your question...",
     errorMessage: "Input field cannot be empty",
     required: true,
   };
@@ -25,16 +24,14 @@ export default function Chatbot() {
 
   const generateHandler = async (e) => {
     e.preventDefault();
-        setLoading(true);
-
-    const postData = {
-      prompt: textInput,
-    };
+    setLoading(true);
 
     try {
-      const response = await axios.post("/api/openai/chatbot", postData);
+      const response = await axios.post("/api/openai/chatbot", {textInput});
+      
       console.log(Response);
       console.log(Response.data);
+     
       setAnswer(response.data);
     } catch (err) {
       console.log(err);
@@ -47,17 +44,9 @@ export default function Chatbot() {
     setTimeout(() => {
       setError("");
     }, 5000);
-            setLoading(false);
+    setLoading(false);
 
   };
-  // api
-  //   .post("/openai", postData)
-  //   .then((response) => {
-  //     const url = response.data;
-  //     console.log(url)
-  //     setImage(url);
-
-  //   });
 
   const handleFocus = (e) => {
     setFocused(true);
@@ -78,7 +67,7 @@ export default function Chatbot() {
           focused={focused.toString()}
         ></textarea>
         <span>{inputs.errorMessage}</span>
-        <button className="btn btn-dark">Generate Image</button>
+        <button className="btn btn-dark">Chat</button>
         <div>
           {loading ? (
            <p>Loading...</p>

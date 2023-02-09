@@ -15,11 +15,9 @@ export default function GenerateImage() {
 
   const [image, setImage] = useState(sampleImg);
   const [textInput, setTextInput] = useState("");
-      const [error, setError] = useState("");
-
-      const [loading, setLoading] = useState(false);
-      // const [errorMessage, setErrorMessage] = useState("");
-      const [focused, setFocused] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [focused, setFocused] = useState(false);
 
       const inputs = {
         // id: 1,
@@ -50,12 +48,8 @@ export default function GenerateImage() {
         e.preventDefault();
         setLoading(true);
 
-        const postData = {
-          prompt: textInput,
-        };
-
         try {
-          const response = await axios.post("/api/openai/image", postData);
+          const response = await axios.post("/api/openai/image", { textInput });
           // console.log(Response);
           // console.log(Response.data);
           setImage(response.data);
