@@ -1,6 +1,4 @@
 require("dotenv").config();
-// const express = require("express");
-// const router = express.Router();
 const OpenAIimage = require("../models/OpenAI");
 
 const { Configuration, OpenAIApi } = require("openai");

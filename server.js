@@ -9,11 +9,12 @@ const app = express();
 connectDB();
 
 
-// Init Middleware
+// Init Middleware(before was bodyparser)
 app.use(express.json({extended: false}));
 
 // Define Routes
-app.use('/api/openai', require('./routes/api/openai'));
+app.use("/api/openai", require("./routes/api/openai"));
+app.use("/api/users", require("./routes/api/users"));
 
 
 app.get('/', (req, res) => res.send('AI Image Generator'));

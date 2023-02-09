@@ -7,3 +7,6 @@ Explanation
 
 Additional Problem Encountered but doesn't affect the app
 -use config in react, out of folder
+
+
+middleware, bodyparser

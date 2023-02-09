@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const OpenAIimage = require("../../models/OpenAI");
+// const OpenAIimage = require("../../models/OpenAI");
 
 const {image, chatbot} = require('../../controller/openai')
 
