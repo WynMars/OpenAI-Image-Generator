@@ -81,7 +81,7 @@ export default function GenerateImage() {
 
 
     return (
-      <div>
+      <div className="container">
         <form onSubmit={generateHandler}>
           <textarea
             placeholder={inputs.placeholder}

@@ -53,7 +53,7 @@ export default function Chatbot() {
   };
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={generateHandler}>
         <textarea
           placeholder={inputs.placeholder}
@@ -68,13 +68,7 @@ export default function Chatbot() {
         ></textarea>
         <span>{inputs.errorMessage}</span>
         <button className="btn btn-dark">Chat</button>
-        <div>
-          {loading ? (
-           <p>Loading...</p>
-          ) : (
-            <p>{answer}</p>
-          )}
-        </div>
+        <div>{loading ? <p>Loading...</p> : <p>{answer}</p>}</div>
       </form>
     </div>
   );
