@@ -16,6 +16,7 @@ button {
 
 span{
   color:red;
+  margin-top: 2px;
   display: none;
 }
 

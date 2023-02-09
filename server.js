@@ -19,7 +19,6 @@ app.use('/api/openai', require('./routes/api/openai'));
 app.get('/', (req, res) => res.send('AI Image Generator'));
 
 
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

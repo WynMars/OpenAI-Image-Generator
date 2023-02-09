@@ -15,55 +15,63 @@ export default function GenerateImage() {
 
   const [image, setImage] = useState(sampleImg);
   const [textInput, setTextInput] = useState("");
-  const [loading, setLoading] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState("");
-  const [focused, setFocused] = useState(false);
+      const [error, setError] = useState("");
 
-    const inputs = {
-      // id: 1,
-      // name: "username",
-      // type: "text",
-      placeholder: "Please type your image description...",
-      errorMessage: "Input field cannot be empty",
-      // label: "Username",
-      // pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true,
-    };
+      const [loading, setLoading] = useState(false);
+      // const [errorMessage, setErrorMessage] = useState("");
+      const [focused, setFocused] = useState(false);
 
-    const changeHandler = (e) => {
-      setTextInput(e.target.value);
-    };
+      const inputs = {
+        // id: 1,
+        // name: "username",
+        // type: "text",
+        placeholder: "Please type your image description...",
+        errorMessage: "Input field cannot be empty",
+        // label: "Username",
+        // pattern: "^[A-Za-z0-9]{3,16}$",
+        required: true,
+      };
 
-    // console.log(process.env);
+      const changeHandler = (e) => {
+        setTextInput(e.target.value);
+      };
 
-    //Create Axios
-    // const api = axios.create({
-    //   baseURL: "/api",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    // });
+      // console.log(process.env);
 
-    const generateHandler = async (e) => {
-      e.preventDefault();
+      //Create Axios
+      // const api = axios.create({
+      //   baseURL: "/api",
+      //   headers: {
+      //     "Content-Type": "application/json"
+      //   },
+      // });
 
-      // if (!textInput) {
-      //   setErrorMessage("Input field cannot be empty");
-      // } else {
-      //   setErrorMessage("");
-
+      const generateHandler = async (e) => {
+        e.preventDefault();
         setLoading(true);
 
         const postData = {
           prompt: textInput,
         };
 
-        const response = await axios.post("/api/openai", postData);
-        const url = response.data;
-        console.log(url);
-        setImage(url);
+        try {
+          const response = await axios.post("/api/openai/image", postData);
+          // console.log(Response);
+          // console.log(Response.data);
+          setImage(response.data);
+        } catch (err) {
+          console.log(err);
+          if (err.response.data.error) {
+            setError(err.response.data.error);
+          } else if (err.message) {
+            setError(err.message);
+          }
+        }
+        setTimeout(() => {
+          setError("");
+        }, 5000);
         setLoading(false);
-      }
+      };
       // api
       //   .post("/openai", postData)
       //   .then((response) => {
