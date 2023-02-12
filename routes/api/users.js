@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../../models/Users");
 
+//user registration
 router.post(
   "/",
   check("name", "Name is required").notEmpty(),

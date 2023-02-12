@@ -15,6 +15,8 @@ app.use(express.json({extended: false}));
 // Define Routes
 app.use("/api/openai", require("./routes/api/openai"));
 app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
+
 
 
 app.get('/', (req, res) => res.send('AI Image Generator'));
