@@ -11,6 +11,12 @@ export default function Navbar() {
         <li>
           <Link to="/chatbot">Chat with Us</Link>
         </li>
+        <li>
+          <Link to="/login">Log In</Link>
+        </li>
+        <li>
+          <Link to="/register">Register</Link>
+        </li>
       </ul>
     </div>
   );

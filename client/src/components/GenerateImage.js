@@ -20,13 +20,8 @@ export default function GenerateImage() {
   const [focused, setFocused] = useState(false);
 
       const inputs = {
-        // id: 1,
-        // name: "username",
-        // type: "text",
         placeholder: "Please type your image description...",
         errorMessage: "Input field cannot be empty",
-        // label: "Username",
-        // pattern: "^[A-Za-z0-9]{3,16}$",
         required: true,
       };
 
