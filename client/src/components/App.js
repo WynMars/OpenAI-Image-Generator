@@ -3,9 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GenerateImage from "./GenerateImage";
 import Chatbot from "./Chatbot";
 import Navbar from "./layout/Navbar";
-import Register from "./auth/register";
-import LogIn from "./auth/login";
-import Alert from "../components/layout/alert";
+import Dashboard from "./dashboard/Dashboard";
+import Register from "./auth/Register";
+import LogIn from "./auth/Login";
+import Alert from "../components/layout/Alert";
 
 //Redux
 import {Provider} from 'react-redux'
@@ -14,6 +15,7 @@ import setAuthToken from "../utils/setAuthToken";
 import { loadUser } from "../actions/auth";
 
 import "./App.css";
+import PrivateRoute from "./routing/PrivateRoute";
 
 function App() {
 
@@ -41,11 +43,16 @@ function App() {
         <Navbar />
         <Alert />
         <Routes>
-          <Route path="/image" element={<GenerateImage />} />
-          <Route path="/chatbot" element={<Chatbot />} />
-          <Route path="/login" element={<LogIn />} />
-
-          <Route path="/register" element={<Register />} />
+          {/* <switch> */}
+          <Route path="image" element={<GenerateImage />} />
+          <Route path="chatbot" element={<Chatbot />} />
+          <Route path="login" element={<LogIn />} />
+          <Route path="register" element={<Register />} />
+          <Route
+            path="dashboard"
+            element={<PrivateRoute component={Dashboard} />}
+          />
+          {/* </switch> */}
         </Routes>
       </BrowserRouter>
     </Provider>
