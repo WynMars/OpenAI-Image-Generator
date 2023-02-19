@@ -1,26 +1,35 @@
 import React, { useState } from "react";
+import {Navigate} from "react-router-dom"
+import { login } from "../../actions/auth";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const LogIn = () => {
+
+const Login = ({login, isAuthenticated}) => {
   const [formData, setFormdata] = useState({
     email: "",
     password: "",
   });
 
-  const {email, password } = formData;
+  const { email, password } = formData;
 
-  const onChange = (event) => {
+  const onChange = (e) => {
     //why use a square bracket
-    setFormdata({ ...formData, [event.target.name]: event.target.value });
+    setFormdata({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    login({ email, password });
   };
+
+  if(isAuthenticated) {
+    return <Navigate to="/dashboard" />
+  }
 
   return (
     <div>
       <form onSubmit={onSubmit}>
-          
         <div>
           <input
             type="text"
@@ -37,11 +46,20 @@ const LogIn = () => {
             onChange={onChange}
           />
         </div>
-      
+
         <button>Log In</button>
       </form>
     </div>
   );
 };
 
-export default LogIn;
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);

@@ -5,6 +5,9 @@ import {
   REGISTER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT,
 } from "./types";
 
 import setAuthToken from "../utils/setAuthToken";
@@ -18,11 +21,11 @@ import setAuthToken from "../utils/setAuthToken";
 // Load User
 export const loadUser = () => async (dispatch) => {
   
-//  //app already run this, do we need run a gain? 
-//   if (localStorage.token) {
-//     // if there is a token set axios headers for all requests
-//     setAuthToken(localStorage.token);
-//   }
+ //app already run this, do we need run a gain? 
+  if (localStorage.token) {
+    // if there is a token set axios headers for all requests
+    setAuthToken(localStorage.token);
+  }
   
   try {
     const res = await axios.get("/api/auth");
@@ -58,3 +61,29 @@ export const register = (formData) => async (dispatch) => {
     });
   }
 };
+
+//Login User
+export const login = (formDataLogin) => async (dispatch) => {
+  try {
+    const res = await axios.post("/api/auth", formDataLogin);
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(loadUser())
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: LOGIN_FAIL,
+    });
+  }
+};
+
+export const logout = () => dispatch => dispatch({type: LOGOUT})

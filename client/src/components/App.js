@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GenerateImage from "./GenerateImage";
 import Chatbot from "./Chatbot";
-import Navbar from "./Navbar";
+import Navbar from "./layout/Navbar";
 import Register from "./auth/register";
 import LogIn from "./auth/login";
 import Alert from "../components/layout/alert";

@@ -47,11 +47,15 @@ exports.chatbot = async (req, res) => {
     const response = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: `
+            // 如何抗衰？
+            // 可以试试轻医美项目。
             What is your name?
             My name is Chatbot.
             How old are you?
             I am 900 years old.
             ${textInput}`,
+      max_tokens: 100,
+      temperature: 0,
     });
     if (response.data) {
       if (response.data.choices[0].text) {
