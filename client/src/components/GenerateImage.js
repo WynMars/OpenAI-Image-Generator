@@ -76,7 +76,7 @@ export default function GenerateImage() {
 
 
     return (
-      <div className="container">
+      <div className="aiContainer container-fluid">
         <form onSubmit={generateHandler}>
           <textarea
             placeholder={inputs.placeholder}

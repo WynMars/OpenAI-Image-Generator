@@ -1,15 +1,20 @@
 require('dotenv').config()
+// const cors = require("cors");
 
 const express = require('express');
 const connectDB = require('./db');
 
 const app = express();
 
+
 // Connect Database
 connectDB();
 
+// app.use(cors());
+
 // Init Middleware(before was bodyparser)
 app.use(express.json({extended: false}));
+
 
 // Define Routes
 app.use("/api/openai", require("./routes/api/openai"));

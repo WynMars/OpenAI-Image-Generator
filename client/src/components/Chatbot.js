@@ -27,11 +27,9 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const response = await axios.post("/api/openai/chatbot", {textInput});
-      
-      console.log(Response);
-      console.log(Response.data);
-     
+      const response = await axios.post("/api/openai/chatbot", { textInput });
+      // console.log(response);
+      // console.log(response.data);
       setAnswer(response.data);
     } catch (err) {
       console.log(err);
@@ -53,7 +51,7 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="container">
+    <div className="aiContainer container-fluid">
       <form onSubmit={generateHandler}>
         <textarea
           placeholder={inputs.placeholder}

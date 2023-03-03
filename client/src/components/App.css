@@ -27,13 +27,44 @@ ul{
     border: 1px solid rgb(0, 0, 0);
 }
  */
-
+/* form validation */
 textarea:invalid[focused="true"] ~ span{
     display: block;
 }
 
+/* .navbar-text {
+  display:inline-block;
+  margin-right: 10px;
+} */
 
-.container {
+/* nav-li-light {
+  color: #ffffff;
+  display: inline-block;
+  text-decoration-line: none;
+}
+
+nav-li-light:hover {
+  color: #b8b8b8;
+} */
+
+nav li {
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 15px;
+  
+}
+nav li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav li a:hover{
+  color:rgb(136, 136, 136)
+}
+
+
+
+.aiContainer {
   width: 100%;
   min-height: 500px;
   max-width: 500px;
@@ -45,9 +76,11 @@ textarea:invalid[focused="true"] ~ span{
   padding: 1rem;
   box-sizing: border-box;
   margin-top: 200px;
+
 }
 
 .loader {
   margin:100px 100px 100px 100px;
 
 }
+

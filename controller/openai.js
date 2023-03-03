@@ -8,6 +8,9 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+
+
+
 exports.image = async (req, res) => {
   console.log("OpenAI Image Post");
   const { textInput } = req.body;
@@ -44,24 +47,18 @@ exports.chatbot = async (req, res) => {
   const { textInput } = req.body;
 
   try {
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `
-            // 如何抗衰？
-            // 可以试试轻医美项目。
-            What is your name?
-            My name is Chatbot.
-            How old are you?
-            I am 900 years old.
-            ${textInput}`,
-      max_tokens: 100,
-      temperature: 0,
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: textInput }],
     });
-    if (response.data) {
-      if (response.data.choices[0].text) {
-        return res.status(200).json(response.data.choices[0].text);
+    console.log(completion.data.choices[0].message);
+
+    if (completion.data) {
+      if (completion.data.choices[0].message.content) {
+        return res.status(200).json(completion.data.choices[0].message.content);
       }
     }
+
   } catch (err) {
     return res.status(404).json({ message: err.message });
   }

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GenerateImage from "./GenerateImage";
 import Chatbot from "./Chatbot";
-import Navbar from "./layout/Navbar";
+import MainNavbar from "./layout/Navbar";
 import Dashboard from "./dashboard/Dashboard";
 import Register from "./auth/Register";
 import LogIn from "./auth/Login";
@@ -37,10 +37,12 @@ function App() {
 
 
 
+
+
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Navbar />
+        <MainNavbar />
         <Alert />
         <Routes>
           {/* <switch> */}

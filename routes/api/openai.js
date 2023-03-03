@@ -4,7 +4,7 @@ const router = express.Router();
 
 const {image, chatbot} = require('../../controller/openai')
 
-router.route('/image').post(image)
+router.route("/image").post(image);
 router.route("/chatbot").post(chatbot);
 
 
