@@ -97,9 +97,8 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="chat-page">
-      {/* <i class="fa-solid fa-circle-user"></i>
-      <i class="fa-solid fa-robot"></i> */}
+    <div>
+    
       <section className="log-area">
         <div>
           {chatLog && chatLog.length > 0 ? (
