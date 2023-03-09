@@ -1,12 +1,7 @@
 body {
   text-align: center;
-background-color: rgb(248, 243, 221);
-}
-
-
-img {
-  height: 256px;
-  width: 256px;
+  background-color: rgb(226, 226, 220);
+  
 }
 
 button {
@@ -14,73 +9,105 @@ button {
   margin-bottom: 20px;
 }
 
-span{
-  color:red;
-  margin-top: 2px;
-  display: none;
+img {
+  height: 256px;
+  width: 256px;
 }
 
-ul{
-  list-style: none
+/* span {
+  color: red;
+  display: none;
+} */
+
+ul {
+  list-style: none;
 }
 /* textarea:invalid[focused="true"]{
     border: 1px solid rgb(0, 0, 0);
 }
  */
 /* form validation */
-textarea:invalid[focused="true"] ~ span{
-    display: block;
+textarea:invalid[focused="true"] ~ span {
+  display: block;
 }
 
-/* .navbar-text {
-  display:inline-block;
-  margin-right: 10px;
-} */
-
-/* nav-li-light {
-  color: #ffffff;
-  display: inline-block;
-  text-decoration-line: none;
+nav {
+  /* display: block; */
+  width: 100vw;
+  background-color: black;
+  justify-content: center;
+  padding: 10px 0 10px 0;
 }
-
-nav-li-light:hover {
-  color: #b8b8b8;
-} */
 
 nav li {
   display: inline-block;
   margin-right: 20px;
   margin-top: 15px;
-  
 }
 nav li a {
   color: white;
   text-decoration: none;
 }
 
-nav li a:hover{
-  color:rgb(136, 136, 136)
+nav li a:hover {
+  color: rgb(136, 136, 136);
 }
 
+nav li a.active {
+  color: rgb(142, 191, 211);
+}
 
+form h3 {
+  margin-top: 10rem;
+}
 
 .aiContainer {
-  width: 100%;
-  min-height: 500px;
-  max-width: 500px;
-  min-width: 250px;
-  background:rgb(214, 214, 214);
-  background-size: 25px 25px;
+  min-height: 50vh;
+  max-width: 80vh;
+  background: rgb(214, 214, 214);
   border-radius: 20px;
   box-shadow: 4px 3px 7px 2px #00000040;
   padding: 1rem;
   box-sizing: border-box;
-  margin-top: 200px;
-
+  margin-top: 8rem;
 }
 
 .loader {
-  margin:100px 100px 100px 100px;
+  margin: 100px 100px 100px 100px;
+}
+
+.inputLength {
+  text-align: center;
+  max-height: 40px;
+  max-width: 250px;
+}
+
+.log-area{
+  min-height: 70vh;
+}
+
+.chat-box{
+  background-color: blanchedalmond;
+  margin: 2% 5% 2% 5%;
+  padding: 2% 5% 2% 5%;
+
+  border-radius: 15px;
+  text-align: left;
+}
+
+.chat-log{
+  margin: 2% 5% 2% 5%;
+  display: flex;
+  position: sticky;
+  bottom:0;
+}
+
+.fa-solid{
+  size: 40px;
+  margin-right: 2%;
 
 }
 
+.chatbot-input-button{
+  margin:1%;
+}

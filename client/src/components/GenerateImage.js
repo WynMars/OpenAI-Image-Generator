@@ -61,14 +61,6 @@ export default function GenerateImage() {
         }, 5000);
         setLoading(false);
       };
-      // api
-      //   .post("/openai", postData)
-      //   .then((response) => {
-      //     const url = response.data;
-      //     console.log(url)
-      //     setImage(url);
-
-      //   });
    
        const handleFocus = (e) => {
       setFocused(true);
@@ -89,7 +81,7 @@ export default function GenerateImage() {
             onBlur={handleFocus}
             focused={focused.toString()}
           ></textarea>
-          <span>{inputs.errorMessage}</span>
+          {/* <span>{inputs.errorMessage}</span> */}
           <button className="btn btn-dark">Generate Image</button>
           <div>
             {loading ? (

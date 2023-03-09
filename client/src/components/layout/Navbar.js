@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
@@ -10,7 +10,7 @@ function MainNavbar({ auth: { isAuthenticated }, logout }) {
   const authLinks = (
     <Fragment>
       <li >
-        <Link to="/dashboard">Dashboard</Link>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
       <li >
         <a onClick={logout} href="#!">
@@ -23,10 +23,10 @@ function MainNavbar({ auth: { isAuthenticated }, logout }) {
   const guestLinks = (
     <Fragment>
       <li >
-        <Link to="/login">Log In</Link>
+        <NavLink to="/login">Log In</NavLink>
       </li>
       <li >
-        <Link to="/register">Register</Link>
+        <NavLink to="/register">Register</NavLink>
       </li>
     </Fragment>
   );
@@ -34,14 +34,13 @@ function MainNavbar({ auth: { isAuthenticated }, logout }) {
   
 
   return (
-    <nav className="navbar bg-dark ">
- 
+    <nav>
         <ul>
           <li>
-            <Link to="/image">Image Generator</Link>
+            <NavLink to="/image">Image Generator</NavLink>
           </li>
           <li>
-            <Link to="/chatbot">Chat with Us</Link>
+            <NavLink to="/chatbot">Chat with Us</NavLink>
           </li>
           {isAuthenticated ? authLinks : guestLinks}
         </ul>

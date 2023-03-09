@@ -5,6 +5,7 @@ import { register } from "../../actions/auth";
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
+
 const Register = ({ setAlert, register, isAuthenticated}) => {
   const [formData, setFormdata] = useState({
     name: "",
@@ -37,8 +38,10 @@ const Register = ({ setAlert, register, isAuthenticated}) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
+        <h3>Create Your Account</h3>
         <div>
           <input
+            class="inputLength"
             type="text"
             placeholder="Name"
             onChange={onChange}
@@ -47,6 +50,7 @@ const Register = ({ setAlert, register, isAuthenticated}) => {
         </div>{" "}
         <div>
           <input
+            class="inputLength"
             type="text"
             placeholder="Email"
             name="email"
@@ -55,6 +59,7 @@ const Register = ({ setAlert, register, isAuthenticated}) => {
         </div>
         <div>
           <input
+            class="inputLength"
             type="text"
             placeholder="Password"
             name="password"
@@ -63,13 +68,14 @@ const Register = ({ setAlert, register, isAuthenticated}) => {
         </div>
         <div>
           <input
+            class="inputLength"
             type="text"
             placeholder="Confirm Password"
             name="password2"
             onChange={onChange}
           />
         </div>
-        <button>Register</button>
+        <button className="btn btn-dark">Register</button>
       </form>
     </div>
   );
@@ -86,3 +92,10 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { setAlert, register })(Register);
+
+
+
+
+
+
+

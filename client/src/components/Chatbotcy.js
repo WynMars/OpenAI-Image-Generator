@@ -1,16 +1,19 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+//loadier
+// import ClipLoader from "react-spinners/ClipLoader";
+
 export default function Chatbot() {
-
   const [textInput, setTextInput] = useState("");
-  const [chatLog, setChatLog] = useState([{
-    user:"GPT",
-    message:"How can I help you today?"
-  }]);
-  // const [answer, setAnswer] = useState();
+  const [chatLog, setChatLog] = useState([
+    {
+      user: "GPT",
+      message: "How can I help you today?",
+    },
+  ]);
+  const [answer, setAnswer] = useState();
 
-  
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -34,7 +37,7 @@ export default function Chatbot() {
       ...prevChatLog,
       {
         user: "Me",
-        message:textInput,
+        message: textInput,
         // // type: currentChatType,
         // id: !chatLog.length ? 1 : chatLog.length + 1,
       },
@@ -44,7 +47,7 @@ export default function Chatbot() {
       const response = await axios.post("/api/openai/chatbot", { textInput });
       // console.log(response);
       // console.log(response.data);
-      // setAnswer(response.data);
+      setAnswer(response.data);
       setChatLog((prevChatLog) => [
         ...prevChatLog,
         {
@@ -69,73 +72,55 @@ export default function Chatbot() {
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   if (answer) {
-  //     let cpyChatLog = [...chatLog];
-  //     const findLatestId = Math.max(...chatLog.map((item) => item.id));
-  //     const findLastChatLog = cpyChatLog.findIndex(
-  //       (item) => item.id === findLatestId
-  //     );
+  useEffect(() => {
+    if (answer) {
+      let cpyChatLog = [...chatLog];
+      const findLatestId = Math.max(...chatLog.map((item) => item.id));
+      const findLastChatLog = cpyChatLog.findIndex(
+        (item) => item.id === findLatestId
+      );
 
-  //     cpyChatLog[findLastChatLog] = {
-  //       ...cpyChatLog[findLastChatLog],
-  //       result: answer,
-  //     };
+      cpyChatLog[findLastChatLog] = {
+        ...cpyChatLog[findLastChatLog],
+        result: answer,
+      };
 
-  //     setChatLog(cpyChatLog);
-  //     setTextInput("");
-  //     setAnswer("");
-  //   }
-  // }, [answer]);
-
-
-
-
+      setChatLog(cpyChatLog);
+      setTextInput("");
+      setAnswer("");
+    }
+  }, [answer]);
 
   const handleFocus = (e) => {
     setFocused(true);
   };
 
   return (
-    <div>
-      {/* <i class="fa-solid fa-circle-user"></i>
-      <i class="fa-solid fa-robot"></i> */}
-      <section className="log-area">
-        <div>
-          {chatLog && chatLog.length > 0 ? (
-            chatLog.map((item, index) => (
-              <div className="chat-box">
-                {item.user === "GPT" ? (
-                  <i className="fa-solid fa-robot"></i>
-                ) : (
-                  <i className="fa-solid fa-circle-user"></i>
-                )}
-
-                <span index={index}> {item.message}</span>
-              </div>
-            ))
-          ) : (
-            <p>No Result</p>
-          )}
-        </div>
-        <div>{loading ? <p>Loading...</p> : ""}</div>
-      </section>
-      <form className="chat-log" onSubmit={handleSubmit}>
+    <div className="aiContainer container-fluid">
+      <form onSubmit={handleSubmit}>
         <textarea
           placeholder={inputs.placeholder}
-          className="form-control chatbot-input"
+          className="form-control"
           onChange={changeHandler}
           value={textInput}
-          rows="2"
+          cols="50"
+          rows="5"
           required={inputs.required}
           onBlur={handleFocus}
           focused={focused.toString()}
         ></textarea>
-
-        <button className="btn btn-dark chatbot-input-button">Chat</button>
-
-        {/* <span className="error-span">{inputs.errorMessage}</span> */}
+        <span>{inputs.errorMessage}</span>
+        <button className="btn btn-dark">Chat</button>
+        <div>{loading ? <p>Loading...</p> : <p>{answer}</p>}</div>
       </form>
+
+      <div>
+        {chatLog && chatLog.length > 0 ? (
+          chatLog.map((item) => <p>{item.message}</p>)
+        ) : (
+          <p>No Result</p>
+        )}
+      </div>
     </div>
   );
 }

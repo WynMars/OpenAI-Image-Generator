@@ -30,8 +30,10 @@ const Login = ({login, isAuthenticated}) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
+        <h3>Please sign in</h3>
         <div>
           <input
+            class="inputLength"
             type="text"
             placeholder="Email"
             name="email"
@@ -40,6 +42,7 @@ const Login = ({login, isAuthenticated}) => {
         </div>
         <div>
           <input
+            class="inputLength"
             type="text"
             placeholder="Password"
             name="password"
@@ -47,7 +50,7 @@ const Login = ({login, isAuthenticated}) => {
           />
         </div>
 
-        <button>Log In</button>
+        <button className="btn btn-dark">Log In</button>
       </form>
     </div>
   );
