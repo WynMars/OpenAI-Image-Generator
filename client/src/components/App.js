@@ -6,7 +6,7 @@ import MainNavbar from "./layout/Navbar";
 import Dashboard from "./dashboard/Dashboard";
 import Register from "./auth/Register";
 import LogIn from "./auth/Login";
-import Alert from "../components/layout/Alert";
+import Alert from "./layout/Alert";
 
 //Redux
 import {Provider} from 'react-redux'
