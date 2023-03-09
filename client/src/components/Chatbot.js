@@ -97,7 +97,7 @@ export default function Chatbot() {
   };
 
   return (
-    <div>
+    <div className="chat-page">
       {/* <i class="fa-solid fa-circle-user"></i>
       <i class="fa-solid fa-robot"></i> */}
       <section className="log-area">
@@ -120,22 +120,22 @@ export default function Chatbot() {
         </div>
         <div>{loading ? <p>Loading...</p> : ""}</div>
       </section>
-      <form className="chat-log" onSubmit={handleSubmit}>
-        <textarea
-          placeholder={inputs.placeholder}
-          className="form-control chatbot-input"
-          onChange={changeHandler}
-          value={textInput}
-          rows="2"
-          required={inputs.required}
-          onBlur={handleFocus}
-          focused={focused.toString()}
-        ></textarea>
 
-        <button className="btn btn-dark chatbot-input-button">Chat</button>
+        <form className="chat-log"  onSubmit={handleSubmit}>
+          <textarea
+            placeholder={inputs.placeholder}
+            className="form-control "
+            onChange={changeHandler}
+            value={textInput}
+            rows="2"
+            required={inputs.required}
+            onBlur={handleFocus}
+            focused={focused.toString()}
+          ></textarea>
 
-        {/* <span className="error-span">{inputs.errorMessage}</span> */}
-      </form>
+          <button className="btn btn-dark chatbot-input-button">Chat</button>
+          {/* <span className="error-span">{inputs.errorMessage}</span> */}
+        </form>
     </div>
   );
 }
