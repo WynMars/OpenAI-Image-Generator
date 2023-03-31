@@ -25,6 +25,15 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.get('/', (req, res) => res.send('AI Image Generator'));
 
 
-const PORT = process.env.PORT || 5000;
-
+const PORT = process.env.WEBSITES_PORT || 8080;
+// const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+const node_env = process.env.APPSETTING_NODE_ENV;
+
+if (node_env === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}

@@ -8,7 +8,6 @@ export default function Chatbot() {
     user:"GPT",
     message:"How can I help you today?"
   }]);
-  // const [answer, setAnswer] = useState();
 
   
   const [error, setError] = useState("");

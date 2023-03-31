@@ -55,6 +55,8 @@ exports.chatbot = async (req, res) => {
 
     if (completion.data) {
       if (completion.data.choices[0].message.content) {
+            // console.log(res.json(completion.data.choices[0].message.content));
+
         return res.status(200).json(completion.data.choices[0].message.content);
       }
     }
